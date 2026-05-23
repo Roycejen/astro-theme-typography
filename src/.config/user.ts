@@ -3,7 +3,7 @@ import type { ThemeConfig } from '~/types'
 export const userConfig: ThemeConfig = {
   site: {
     title: '反咀',
-    subtitle: '无人知我',
+    subtitle: '记录一下，就一下',
     author: 'RoyceJen',
     description: '无人在乎',
     website: 'https://blog.roycejen.ren',
