@@ -1,12 +1,12 @@
 import type { ThemeConfig } from '~/types'
 
 export const userConfig: ThemeConfig = {
-website: 'https://blog.roycejen.ren',
   site: {
     title: '反咀',
     subtitle: '无人知我',
     author: 'RoyceJen',
     description: '无人在乎',
+    website: 'https://blog.roycejen.ren',
     
     socialLinks: [
       {
