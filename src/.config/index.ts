@@ -3,7 +3,6 @@ import { defaultConfig } from './default'
 import { userConfig } from './user'
 
 export const themeConfig = deepMerge<ThemeConfig>(defaultConfig, userConfig)
-website: 'https://blog.roycejen.ren',
 function deepMerge<T>(target: T, source: DeepPartial<T>): T {
   const output = { ...target }
 
