@@ -11,7 +11,7 @@ import { themeConfig } from './src/.config'
 
 // https://astro.build/config
 export default defineConfig({
-  site: themeConfig.site.website,
+  site: 'https://blog.roycejen.ren',
   prefetch: true,
   base: '/',
   vite: {
