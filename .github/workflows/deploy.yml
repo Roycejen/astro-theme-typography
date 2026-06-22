@@ -30,7 +30,7 @@ jobs:
 
       # pnpm 10 默认不跑依赖的安装脚本，需显式重建 sharp 原生模块
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build sharp native bindings
         run: pnpm rebuild sharp
