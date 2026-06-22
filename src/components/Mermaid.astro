@@ -16,8 +16,10 @@ const { mermaid } = themeConfig
 
         /** 将 Shiki 输出的 mermaid 代码块转为 mermaid 可识别的节点 */
         function prepareMermaidNodes(root = document) {
-          const blocks = root.querySelectorAll(
-            'pre[data-language="mermaid"], pre:has(> code.language-mermaid)',
+          const blocks = Array.from(
+            root.querySelectorAll(
+              'pre[data-language="mermaid"], pre:has(> code.language-mermaid)',
+            ),
           )
 
           for (const pre of blocks) {
@@ -36,7 +38,9 @@ const { mermaid } = themeConfig
         async function renderMermaid() {
           prepareMermaidNodes()
 
-          const nodes = document.querySelectorAll('.mermaid:not([data-processed])')
+          const nodes = Array.from(
+            document.querySelectorAll<HTMLElement>('.mermaid:not([data-processed])'),
+          )
           if (nodes.length === 0)
             return
 
