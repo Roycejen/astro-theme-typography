@@ -1,0 +1,82 @@
+---
+import { themeConfig } from '~/.config'
+
+const { mermaid } = themeConfig
+---
+
+{
+  mermaid.enabled && (
+    <>
+      <script>
+        import mermaid from 'mermaid'
+
+        function getMermaidTheme() {
+          return document.documentElement.classList.contains('dark') ? 'dark' : 'default'
+        }
+
+        /** 将 Shiki 输出的 mermaid 代码块转为 mermaid 可识别的节点 */
+        function prepareMermaidNodes(root = document) {
+          const blocks = root.querySelectorAll(
+            'pre[data-language="mermaid"], pre:has(> code.language-mermaid)',
+          )
+
+          for (const pre of blocks) {
+            const code = pre.querySelector('code')
+            const source = (code?.textContent ?? pre.textContent ?? '').trim()
+            if (!source)
+              continue
+
+            const div = document.createElement('div')
+            div.className = 'mermaid'
+            div.textContent = source
+            pre.replaceWith(div)
+          }
+        }
+
+        async function renderMermaid() {
+          prepareMermaidNodes()
+
+          const nodes = document.querySelectorAll('.mermaid:not([data-processed])')
+          if (nodes.length === 0)
+            return
+
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: getMermaidTheme(),
+            securityLevel: 'strict',
+          })
+
+          try {
+            await mermaid.run({ nodes })
+          }
+          catch (error) {
+            console.error('Mermaid 渲染失败:', error)
+          }
+        }
+
+        function initMermaid() {
+          void renderMermaid()
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMermaid, { once: true })
+        }
+        else {
+          initMermaid()
+        }
+
+        // swup 页面切换后重新渲染
+        document.addEventListener('swup:page:view', initMermaid)
+      </script>
+
+      <style is:global>
+        .prose .mermaid {
+          display: flex;
+          justify-content: center;
+          margin: 1.5em 0;
+          overflow-x: auto;
+        }
+      </style>
+    </>
+  )
+}

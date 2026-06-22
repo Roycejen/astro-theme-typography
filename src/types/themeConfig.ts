@@ -22,6 +22,7 @@ export interface ThemeConfig {
   rss: ConfigRSS
   analytics: ConfigAnalytics
   latex: ConfigLaTeX
+  mermaid: ConfigMermaid
 }
 
 export type UserConfig = DeepPartial<ThemeConfig>
@@ -73,6 +74,10 @@ export interface ConfigAnalytics {
 
 export interface ConfigLaTeX {
   katex: boolean
+}
+
+export interface ConfigMermaid {
+  enabled: boolean
 }
 
 interface Colors {

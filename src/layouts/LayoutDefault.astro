@@ -5,6 +5,7 @@ import SiteNavigation from '~/components/SiteNavigation.astro'
 import SiteTitle from '~/components/SiteTitle.astro'
 import SiteSeo from '~/components/SiteSeo.astro'
 import LaTeX from '~/components/LaTeX.astro'
+import Mermaid from '~/components/Mermaid.astro'
 import Analytics from '~/components/Analytics.astro'
 import ThemeScript from '~/components/ThemeScript.astro'
 import '~/styles/global.css'
@@ -17,6 +18,7 @@ const dark = themeConfig.appearance.theme === 'dark'
   <head>
     <slot name="seo"> <SiteSeo /> </slot>
     <LaTeX />
+    <Mermaid />
     <Analytics />
     <ThemeScript />
   </head>

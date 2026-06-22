@@ -89,4 +89,7 @@ export const defaultConfig: ThemeConfig = {
   latex: {
     katex: false,
   },
+  mermaid: {
+    enabled: true,
+  },
 }
